@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+/* TELA DE ENTRADA */
+
+.welcome {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.logo-main {
+  position: absolute;
+  top: 150px;
+}
+
+.welcome input {
+  width: 261px;
+  height: 54px;
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+
+.welcome input::placeholder {
+  text-align: center;
+}
+
+.welcome button {
+  width: 109px;
+  height: 45px;
+  background: #e7e7e7;
+  border-radius: 9px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* HEADER */
