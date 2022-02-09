@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>Bate Papo UOL</title>
   </head>
   <body>
@@ -19,9 +21,49 @@
       <button>Entrar</button>
     </section>
 
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>
+      <img src="./images/logo-app.png" alt="" />
+      <ion-icon name="people-sharp"></ion-icon>
+    </header>
+    <main>
+      <article class="in-out-mensage">
+        <p>
+          <span class="time">(09:21:45)</span> <span>João</span> entra na
+          sala...
+        </p>
+      </article>
+
+      <article class="enter-room">
+        <p>
+          <span class="time">(09:21:45)</span> <span>João</span> para
+          <span>Todos</span>: Bom dia sala
+        </p>
+      </article>
+
+      <article class="enter-room">
+        <p>
+          <span class="time">(09:21:45)</span> <span>Maria</span> para
+          <span>João</span>: Oi João :)
+        </p>
+      </article>
+
+      <article class="private-mensage">
+        <p>
+          <span class="time">(09:21:45)</span> <span>João</span> reservadamente
+          para <span>Maria</span>: Oi gatinha quer tc?
+        </p>
+      </article>
+
+      <article class="in-out-mensage">
+        <p>
+          <span class="time">(09:21:45)</span> <span>Maria</span> sai da sala...
+        </p>
+      </article>
+    </main>
+    <footer>
+      <input type="text" placeholder="Escreva aqui..." />
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </footer>
 
     <script
       type="module"
