@@ -4,6 +4,7 @@ const sideBar = document.querySelector("nav");
 const overlay = document.querySelector(".overlay");
 const planeFooter = document.querySelector("footer ion-icon");
 let inputUsername = document.querySelector(".welcome input");
+let interval = null;
 
 function acessChat() {
   const username = inputUsername.value;
@@ -18,6 +19,7 @@ function acessChat() {
 
 function sucessEnterChat(code) {
   welcome.classList.toggle("hidden");
+  interval = setInterval(keepConnection, 5000);
 }
 
 function failedEnterChat(erro) {
@@ -26,6 +28,19 @@ function failedEnterChat(erro) {
   }
 }
 
+function keepConnection() {
+  let promisseKeepConnection = axios.post(
+    "https://mock-api.driven.com.br/api/v4/uol/status",
+    objName
+  );
+  promisseKeepConnection.catch(stopConnection);
+}
+
+
+
+function stopConnection() {
+  clearInterval(interval);
+}
 function openAndCloseSideBar() {
   buttonPeoplesHeader.classList.toggle("hidden");
   sideBar.classList.toggle("hidden");
