@@ -85,10 +85,15 @@ header ion-icon {
 
 /* MAIN */
 main {
-  background-color: #eeeeee;
-  margin-top: 115px;
+  background-color: #f3f3f3;
+  margin-top: 90px;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
+  padding-top: 15px;
+}
+
+main article:first-child {
+  margin-top: 15px;
 }
 
 article {
@@ -109,14 +114,16 @@ article p .time {
   color: #aaaaaa;
 }
 
-.in-out-mensage {
-  background: #dcdcdc;
-  margin-bottom: 10px;
+.status {
+  background-color: #dcdcdc;
 }
 
-.private-mensage {
+.message {
+  background-color: #ffffff;
+}
+
+.private_message {
   background-color: #ffdede;
-  margin-bottom: 10px;
 }
 
 /* NAV */

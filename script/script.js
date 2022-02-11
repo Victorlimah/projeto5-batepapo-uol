@@ -1,4 +1,5 @@
 const welcome = document.querySelector(".welcome");
+const main = document.querySelector("main");
 const buttonPeoplesHeader = document.querySelector("header ion-icon");
 const sideBar = document.querySelector("nav");
 const overlay = document.querySelector(".overlay");
@@ -9,16 +10,17 @@ let interval = null;
 function acessChat() {
   const username = inputUsername.value;
   const objName = { name: username };
-  let promisseEnterChat = axios.post(
+  let promiseEnterChat = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/participants",
     objName
   );
-  promisseEnterChat.then(sucessEnterChat);
-  promisseEnterChat.catch(failedEnterChat);
+  promiseEnterChat.then(sucessEnterChat);
+  promiseEnterChat.catch(failedEnterChat);
 }
 
 function sucessEnterChat(code) {
   welcome.classList.toggle("hidden");
+  getMessages();
   interval = setInterval(keepConnection, 5000);
 }
 
@@ -29,14 +31,49 @@ function failedEnterChat(erro) {
 }
 
 function keepConnection() {
-  let promisseKeepConnection = axios.post(
+  let promiseKeepConnection = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/status",
     objName
   );
-  promisseKeepConnection.catch(stopConnection);
+  promiseKeepConnection.catch(stopConnection);
 }
 
+function getMessages() {
+  let promiseGetMessages = axios.get(
+    "https://mock-api.driven.com.br/api/v4/uol/messages"
+  );
+  promiseGetMessages.then(renderMessages);
+}
+let arrayMessages = [];
 
+function renderMessages(response) {
+  let messageStatusFactory = "";
+  let messageFactory = "";
+
+  arrayMessages = response.data;
+
+  for (let i = 0; i < arrayMessages.length; i++) {
+    console.log("entrou no for");
+    if (arrayMessages[i].type === "status") {
+      main.innerHTML += `<article class="${arrayMessages[i].type}">
+        <p>
+          <span class="time">${arrayMessages[i].time}</span>
+          <span>${arrayMessages[i].from}</span>
+          ${arrayMessages[i].text}
+        </p>
+      </article>`;
+    } else {
+      main.innerHTML += `<article class="${arrayMessages[i].type}">
+        <p>
+          <span class="time">${arrayMessages[i].time}</span>
+          <span>${arrayMessages[i].from}</span> para 
+          <span>${arrayMessages[i].to}</span>: 
+          ${arrayMessages[i].text}
+        </p>
+      </article>`;
+    }
+  }
+}
 
 function stopConnection() {
   clearInterval(interval);
