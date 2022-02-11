@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <title>Bate Papo UOL</title>
   </head>
   <body>
@@ -23,9 +27,9 @@
 
     <header>
       <img src="./images/logo-app.png" alt="" />
-      <ion-icon name="people-sharp"></ion-icon>
+      <ion-icon onclick="openAndCloseSideBar();" name="people-sharp"></ion-icon>
     </header>
-    <main>
+    <main class="hidden">
       <article class="in-out-mensage">
         <p>
           <span class="time">(09:21:45)</span> <span>João</span> entra na
@@ -60,6 +64,60 @@
         </p>
       </article>
     </main>
+    <nav class="hidden">
+      <div class="person-send-mensage">
+        <h3>Escolha um contato para enviar mensagem:</h3>
+        <div class="person">
+          <span>
+            <ion-icon name="people-sharp"></ion-icon>
+            <p>Todos</p></span
+          >
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        <div class="person">
+          <span
+            ><ion-icon name="person-circle-sharp"></ion-icon>
+            <p>João</p></span
+          >
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        <div class="person">
+          <span
+            ><ion-icon name="person-circle-sharp"></ion-icon>
+            <p>Maria</p></span
+          >
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+      </div>
+      <div class="visibility-mensage">
+        <h3>Escolha um contato para enviar mensagem:</h3>
+        <div class="person">
+          <span>
+            <ion-icon name="people-sharp"></ion-icon>
+            <p>Todos</p></span
+          >
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        <div class="person">
+          <span
+            ><ion-icon name="person-circle-sharp"></ion-icon>
+            <p>João</p></span
+          >
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+        <div class="person">
+          <span
+            ><ion-icon name="person-circle-sharp"></ion-icon>
+            <p>Maria</p></span
+          >
+          <ion-icon name="checkmark-sharp"></ion-icon>
+        </div>
+      </div>
+
+      <button onclick="openAndCloseSideBar();">
+        <ion-icon name="arrow-undo-circle-sharp"></ion-icon> Voltar para o chat
+      </button>
+    </nav>
     <footer>
       <input type="text" placeholder="Escreva aqui..." />
       <ion-icon name="paper-plane-outline"></ion-icon>
