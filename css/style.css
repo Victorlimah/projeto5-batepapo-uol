@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+}
+body {
   font-family: "Roboto", sans-serif;
 }
 
@@ -13,7 +15,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 }
 
 .logo-main {
@@ -28,9 +32,18 @@
   border: 1px solid #d7d7d7;
   border-radius: 4px;
   margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 25px;
 }
 
 .welcome input::placeholder {
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  align-items: center;
   text-align: center;
 }
 
@@ -38,7 +51,14 @@
   width: 109px;
   height: 45px;
   background: #e7e7e7;
+  border: none;
   border-radius: 9px;
+  font-size: 18px;
+  line-height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #696969;
 }
 
 .hidden {
@@ -100,6 +120,15 @@ article p .time {
 }
 
 /* NAV */
+.overlay {
+  width: 30%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 nav {
   width: 70%;
   height: 100vh;
@@ -109,13 +138,13 @@ nav {
   top: 0;
   right: 0;
   z-index: 2;
-  background-color: red;
+  background-color: #ffffff;
 }
 
 nav div {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 25px;
 }
 
 .person {
@@ -126,19 +155,31 @@ nav div {
 }
 
 nav div h3 {
+  width: 100%;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;
-  margin: 30px 0 25px 0;
+  text-align: center;
+}
+
+.choices {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.person p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
   display: flex;
   align-items: center;
-  text-align: center;
 }
 
 .person span {
   display: flex;
-  width: 100px;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -150,6 +191,25 @@ nav div h3 {
   font-size: 25px;
   flex-direction: row;
   position: relative;
+  margin-right: 5px;
+}
+
+nav button {
+  width: 60%;
+  height: 35px;
+  background-color: #e7e7e7;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 20%;
+}
+
+nav button ion-icon {
+  font-size: 25px;
 }
 /* FOOTER */
 footer {
