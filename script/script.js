@@ -6,13 +6,16 @@ const overlay = document.querySelector(".overlay");
 const planeFooter = document.querySelector("footer ion-icon");
 let inputUsername = document.querySelector(".welcome input");
 let interval = null;
-
+let intervalMessages = null;
+let username = "";
+let newMessage = "";
+let oldMessage = "";
 function acessChat() {
-  const username = inputUsername.value;
-  const objName = { name: username };
+  username = inputUsername.value;
+
   let promiseEnterChat = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/participants",
-    objName
+    { name: username }
   );
   promiseEnterChat.then(sucessEnterChat);
   promiseEnterChat.catch(failedEnterChat);
@@ -20,7 +23,7 @@ function acessChat() {
 
 function sucessEnterChat(code) {
   welcome.classList.toggle("hidden");
-  getMessages();
+  intervalMessages = setInterval(getMessages, 3);
   interval = setInterval(keepConnection, 5000);
 }
 
@@ -33,7 +36,7 @@ function failedEnterChat(erro) {
 function keepConnection() {
   let promiseKeepConnection = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/status",
-    objName
+    { name: username }
   );
   promiseKeepConnection.catch(stopConnection);
 }
@@ -43,6 +46,7 @@ function getMessages() {
     "https://mock-api.driven.com.br/api/v4/uol/messages"
   );
   promiseGetMessages.then(renderMessages);
+  promiseGetMessages.catch(unRenderMessages);
 }
 let arrayMessages = [];
 
@@ -53,7 +57,6 @@ function renderMessages(response) {
   arrayMessages = response.data;
 
   for (let i = 0; i < arrayMessages.length; i++) {
-    console.log("entrou no for");
     if (arrayMessages[i].type === "status") {
       main.innerHTML += `<article class="${arrayMessages[i].type}">
         <p>
@@ -72,7 +75,17 @@ function renderMessages(response) {
         </p>
       </article>`;
     }
+    newMessage = document.querySelector("main article:last-child");
+    if (newMessage.innerHTML !== oldMessage.innerHTML) {
+      newMessage.scrollIntoView();
+      oldMessage = newMessage;
+    }
   }
+}
+
+function unRenderMessages(error) {
+  alert("Error to render the messages");
+  console.log(error.response);
 }
 
 function stopConnection() {
