@@ -28,9 +28,12 @@ function sucessEnterChat(code) {
 }
 
 function failedEnterChat(erro) {
+  const alertIcon = document.querySelector(".input ion-icon");
+  const alertText = document.querySelector(".welcome h3");
   if (erro.response.status === 400) {
     inputUsername.value = "";
-    
+    toggleHiddenClass([alertIcon, alertText]);
+    alertIcon.parentElement.classList.toggle("shake");
   }
 }
 

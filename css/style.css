@@ -26,18 +26,35 @@ body {
   top: 150px;
 }
 
-.welcome input {
+.input {
+  position: relative;
+}
+
+.input input {
   width: 261px;
   height: 54px;
   background: #ffffff;
   border: 1px solid #d7d7d7;
-  border-radius: 4px;
-  margin-bottom: 18px;
+  border-radius: 9px;
+  margin-bottom: 10px;
   font-size: 18px;
   line-height: 25px;
 }
 
-.welcome input::placeholder {
+.welcome h3 {
+  color: red;
+  margin-bottom: 5px;
+}
+
+.welcome ion-icon {
+  font-size: 22px;
+  color: red;
+  position: absolute;
+  top: 25%;
+  right: 15px;
+}
+
+.welcome .input input::placeholder {
   text-align: center;
   font-style: normal;
   font-weight: normal;
@@ -54,6 +71,7 @@ body {
   background: #e7e7e7;
   border: none;
   border-radius: 9px;
+  margin-top: 8px;
   font-size: 18px;
   line-height: 25px;
   display: flex;
@@ -95,7 +113,7 @@ main div {
 }
 .loading h2 {
   font-size: 50px;
-  color: #d7d7d7;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .spinner {
@@ -103,7 +121,7 @@ main div {
   width: 50px;
   margin-top: 10px;
   border: 8px solid #ffffff;
-  border-left-color: #d7d7d7;
+  border-left-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -111,6 +129,47 @@ main div {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.shake {
+  animation: earthquake 0.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes earthquake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-2px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(2px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 1px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-2px, 2px) rotate(0deg);
+  }
+  70% {
+    transform: translate(2px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, 1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, -2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, 2px) rotate(-1deg);
   }
 }
 
@@ -265,6 +324,8 @@ footer input {
   width: 100%;
   height: 80px;
   border: none;
+  font-size: 18px;
+  line-height: 25px;
 }
 
 footer ion-icon {
