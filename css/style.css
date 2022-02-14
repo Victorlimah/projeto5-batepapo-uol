@@ -83,6 +83,36 @@ header {
 header ion-icon {
   font-size: 40px;
 }
+/* LOADING */
+
+main div {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loading h2 {
+  font-size: 50px;
+  color: #d7d7d7;
+}
+
+.spinner {
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+  border: 8px solid #ffffff;
+  border-left-color: #d7d7d7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* MAIN */
 main {

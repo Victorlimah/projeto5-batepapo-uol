@@ -23,14 +23,14 @@ function acessChat() {
 
 function sucessEnterChat(code) {
   welcome.classList.toggle("hidden");
-  getMessages();
-  intervalMessages = setInterval(getMessages, 1500);
+  intervalMessages = setInterval(getMessages, 3000);
   interval = setInterval(keepConnection, 5000);
 }
 
 function failedEnterChat(erro) {
   if (erro.response.status === 400) {
     inputUsername.value = "";
+    
   }
 }
 
@@ -58,15 +58,15 @@ function renderMessages(response) {
   main.innerHTML = "";
   for (let i = 0; i < arrayMessages.length; i++) {
     if (arrayMessages[i].type === "status") {
-      main.innerHTML += `<article class="${arrayMessages[i].type}">
+      main.innerHTML += `<article data-identifier="message" class="${arrayMessages[i].type}">
         <p>
           <span class="time">${arrayMessages[i].time}</span>
           <span>${arrayMessages[i].from}</span>
           ${arrayMessages[i].text}
         </p>
       </article>`;
-    } else {
-      main.innerHTML += `<article class="${arrayMessages[i].type}">
+    } else if (arrayMessages[i].type === "message") {
+      main.innerHTML += `<article data-identifier="message" class="${arrayMessages[i].type}">
         <p>
           <span class="time">${arrayMessages[i].time}</span>
           <span>${arrayMessages[i].from}</span> para 
@@ -74,14 +74,22 @@ function renderMessages(response) {
           ${arrayMessages[i].text}
         </p>
       </article>`;
-    }
-    newMessage = document.querySelector("article:last-child");
-    if (newMessage.innerHTML !== oldMessage.innerHTML) {
-      newMessage.scrollIntoView();
-      oldMessage = newMessage;
+    } else if (arrayMessages[i].type === "private_message") {
+      main.innerHTML += `<article data-identifier="message" class="${arrayMessages[i].type}">
+        <p>
+          <span class="time">${arrayMessages[i].time}</span>
+          <span>${arrayMessages[i].from}</span> reservadamente para 
+          <span>${arrayMessages[i].to}</span>: 
+          ${arrayMessages[i].text}
+        </p>
+      </article>`;
     }
   }
-  getMessages();
+  newMessage = document.querySelector("article:last-child");
+  if (newMessage.innerHTML !== oldMessage.innerHTML) {
+    newMessage.scrollIntoView();
+    oldMessage = newMessage;
+  }
 }
 
 function unRenderMessages(error) {
@@ -89,16 +97,40 @@ function unRenderMessages(error) {
   console.log(error.response);
 }
 
+function sendMessage() {
+  let text = document.querySelector("footer input");
+  let objMessage = {
+    from: username,
+    to: "Todos",
+    text: text.value,
+    type: "message",
+  };
+  const promiseSendMessage = axios.post(
+    "https://mock-api.driven.com.br/api/v4/uol/messages",
+    objMessage
+  );
+  text.value = "";
+  promiseSendMessage.catch(errorSendMessage);
+}
+
+function errorSendMessage(error) {
+  alert("Failed to send the message");
+}
+
 function stopConnection() {
   clearInterval(interval);
 }
 function openAndCloseSideBar() {
-  buttonPeoplesHeader.classList.toggle("hidden");
-  sideBar.classList.toggle("hidden");
-  overlay.classList.toggle("hidden");
-  planeFooter.classList.toggle("hidden");
+  toggleHiddenClass([buttonPeoplesHeader, sideBar, overlay, planeFooter]);
+}
+
+function toggleHiddenClass(array) {
+  for (let i = 0; i < array.length; i++) {
+    array[i].classList.toggle("hidden");
+  }
 }
 let fatherElement = null;
+
 function checkChoice(element) {
   const check = element.querySelector(".check");
   fatherElement = element.parentNode;

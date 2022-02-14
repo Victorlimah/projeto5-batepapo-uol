@@ -31,7 +31,12 @@
       <img src="./images/logo-app.png" alt="" />
       <ion-icon onclick="openAndCloseSideBar();" name="people-sharp"></ion-icon>
     </header>
-    <main class=""></main>
+    <main class="">
+      <div class="loading">
+        <h2>Loading</h2>
+        <div class="spinner"></div>
+      </div>
+    </main>
     <nav class="hidden">
       <div class="person-send-mensage">
         <h3>Escolha um contato para enviar mensagem:</h3>
@@ -81,10 +86,10 @@
         <ion-icon name="arrow-undo-circle-sharp"></ion-icon> Voltar para o chat
       </button>
     </nav>
-    <div class="overlay hidden"></div>
+    <div onclick="openAndCloseSideBar()" class="overlay hidden"></div>
     <footer>
       <input type="text" placeholder="Escreva aqui..." />
-      <ion-icon name="paper-plane-outline"></ion-icon>
+      <ion-icon onclick="sendMessage()" name="paper-plane-outline"></ion-icon>
     </footer>
 
     <script
