@@ -175,7 +175,7 @@ function showUsers(response) {
   let usersOnline = document.querySelector(".person-send-message");
   usersOnline.innerHTML = `
         <h3>Escolha um contato para enviar mensagem:</h3>
-        <div class="person check" onclick="checkChoice(this)">
+        <div class="person" onclick="checkChoice(this)">
           <span>
             <ion-icon name="people-sharp"></ion-icon>
             <p>Todos</p></span>
@@ -196,3 +196,17 @@ function showUsers(response) {
 function errorUsers(erro) {
   alert("Error to loading users");
 }
+
+let inputLog = document.querySelector(".input input");
+inputLog.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    document.querySelector(".input button").click();
+  }
+});
+
+let inputFooter = document.querySelector("footer input");
+inputFooter.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    document.querySelector("footer ion-icon").click();
+  }
+});
