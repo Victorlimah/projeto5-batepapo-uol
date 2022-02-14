@@ -21,6 +21,7 @@
       <div class="logo-main">
         <img src="./images/logo-main.png" alt="" />
       </div>
+      <h3 class="hidden">Nome já em uso, digite novamente</h3>
       <div class="input">
         <input
           data-identifier="enter-name"
@@ -30,7 +31,6 @@
         <ion-icon class="hidden" name="alert-circle-outline"></ion-icon>
         <button data-identifier="start" onclick="acessChat()">Entrar</button>
       </div>
-      <h3 class="hidden">Nome já em uso, digite novamente</h3>
 
       <div class="loading hidden">
         <h2>Loading</h2>
@@ -44,31 +44,7 @@
     </header>
     <main class=""></main>
     <nav class="hidden">
-      <div class="person-send-mensage">
-        <h3>Escolha um contato para enviar mensagem:</h3>
-
-        <div class="person" onclick="checkChoice(this)">
-          <span>
-            <ion-icon name="people-sharp"></ion-icon>
-            <p>Todos</p></span
-          >
-          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-        </div>
-        <div class="person" onclick="checkChoice(this)">
-          <span
-            ><ion-icon name="person-circle-sharp"></ion-icon>
-            <p>João</p></span
-          >
-          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-        </div>
-        <div class="person" onclick="checkChoice(this)">
-          <span
-            ><ion-icon name="person-circle-sharp"></ion-icon>
-            <p>Maria</p></span
-          >
-          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-        </div>
-      </div>
+      <div class="person-send-message"></div>
       <div class="visibility-mensage">
         <h3>Escolha a visibilidade:</h3>
 

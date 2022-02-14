@@ -10,6 +10,7 @@ let intervalMessages = null;
 let username = "";
 let newMessage = "";
 let oldMessage = "";
+
 function acessChat() {
   username = inputUsername.value;
   document.querySelector(".input").classList.add("hidden");
@@ -27,8 +28,10 @@ function acessChat() {
 function sucessEnterChat(code) {
   welcome.classList.toggle("hidden");
   getMessages();
+  getUsers();
   intervalMessages = setInterval(getMessages, 3000);
   interval = setInterval(keepConnection, 5000);
+  setInterval(getUsers, 10000);
 }
 
 function failedEnterChat(erro) {
@@ -39,6 +42,9 @@ function failedEnterChat(erro) {
     alertIcon.classList.remove("hidden");
     alertText.classList.remove("hidden");
     alertIcon.parentElement.classList.toggle("shake");
+    document.querySelector(".input").classList.remove("hidden");
+    document.querySelector(".welcome button").classList.remove("hidden");
+    document.querySelector(".loading").classList.add("hidden");
   }
 }
 
@@ -153,4 +159,40 @@ function unselectOption(element) {
     elementSelected.classList.remove("selected");
     elementSelected.classList.add("hidden");
   }
+}
+
+function getUsers() {
+  const promiseUsers = axios.get(
+    "https://mock-api.driven.com.br/api/v4/uol/participants"
+  );
+  promiseUsers.then(showUsers);
+  promiseUsers.catch(errorUsers);
+}
+
+let arrayUsers = [];
+function showUsers(response) {
+  arrayUsers = response.data;
+  let usersOnline = document.querySelector(".person-send-message");
+  usersOnline.innerHTML = `
+        <h3>Escolha um contato para enviar mensagem:</h3>
+        <div class="person check" onclick="checkChoice(this)">
+          <span>
+            <ion-icon name="people-sharp"></ion-icon>
+            <p>Todos</p></span>
+          <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+        </div>`;
+
+  for (let i = 0; i < arrayUsers.length; i++) {
+    usersOnline.innerHTML += `
+      <div class="person" onclick="checkChoice(this)">
+        <span>
+        <ion-icon name="person-circle-sharp"></ion-icon>
+        <p>${arrayUsers[i].name}</p></span>
+        <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+      </div>`;
+  }
+}
+
+function errorUsers(erro) {
+  alert("Error to loading users");
 }
