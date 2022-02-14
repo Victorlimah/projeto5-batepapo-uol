@@ -22,23 +22,27 @@
         <img src="./images/logo-main.png" alt="" />
       </div>
       <div class="input">
-        <input type="text" placeholder="Digite seu nome" />
+        <input
+          data-identifier="enter-name"
+          type="text"
+          placeholder="Digite seu nome"
+        />
         <ion-icon class="hidden" name="alert-circle-outline"></ion-icon>
+        <button data-identifier="start" onclick="acessChat()">Entrar</button>
       </div>
       <h3 class="hidden">Nome já em uso, digite novamente</h3>
-      <button onclick="acessChat()">Entrar</button>
+
+      <div class="loading hidden">
+        <h2>Loading</h2>
+        <div class="spinner"></div>
+      </div>
     </section>
 
     <header>
       <img src="./images/logo-app.png" alt="" />
       <ion-icon onclick="openAndCloseSideBar();" name="people-sharp"></ion-icon>
     </header>
-    <main class="">
-      <div class="loading">
-        <h2>Loading</h2>
-        <div class="spinner"></div>
-      </div>
-    </main>
+    <main class=""></main>
     <nav class="hidden">
       <div class="person-send-mensage">
         <h3>Escolha um contato para enviar mensagem:</h3>

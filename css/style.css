@@ -28,6 +28,9 @@ body {
 
 .input {
   position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .input input {
@@ -80,10 +83,6 @@ body {
   color: #696969;
 }
 
-.hidden {
-  display: none;
-}
-
 /* HEADER */
 header {
   display: flex;
@@ -103,7 +102,7 @@ header ion-icon {
 }
 /* LOADING */
 
-main div {
+.loading {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -333,4 +332,8 @@ footer ion-icon {
   position: absolute;
   bottom: 20px;
   right: 15px;
+}
+
+.hidden {
+  display: none;
 }

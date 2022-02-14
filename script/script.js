@@ -12,6 +12,9 @@ let newMessage = "";
 let oldMessage = "";
 function acessChat() {
   username = inputUsername.value;
+  document.querySelector(".input").classList.add("hidden");
+  document.querySelector(".welcome button").classList.add("hidden");
+  document.querySelector(".loading").classList.remove("hidden");
 
   let promiseEnterChat = axios.post(
     "https://mock-api.driven.com.br/api/v4/uol/participants",
@@ -23,6 +26,7 @@ function acessChat() {
 
 function sucessEnterChat(code) {
   welcome.classList.toggle("hidden");
+  getMessages();
   intervalMessages = setInterval(getMessages, 3000);
   interval = setInterval(keepConnection, 5000);
 }
@@ -32,7 +36,8 @@ function failedEnterChat(erro) {
   const alertText = document.querySelector(".welcome h3");
   if (erro.response.status === 400) {
     inputUsername.value = "";
-    toggleHiddenClass([alertIcon, alertText]);
+    alertIcon.classList.remove("hidden");
+    alertText.classList.remove("hidden");
     alertIcon.parentElement.classList.toggle("shake");
   }
 }
