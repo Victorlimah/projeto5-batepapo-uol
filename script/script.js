@@ -23,7 +23,8 @@ function acessChat() {
 
 function sucessEnterChat(code) {
   welcome.classList.toggle("hidden");
-  intervalMessages = setInterval(getMessages, 3);
+  getMessages();
+  intervalMessages = setInterval(getMessages, 1500);
   interval = setInterval(keepConnection, 5000);
 }
 
@@ -48,14 +49,13 @@ function getMessages() {
   promiseGetMessages.then(renderMessages);
   promiseGetMessages.catch(unRenderMessages);
 }
-let arrayMessages = [];
 
 function renderMessages(response) {
   let messageStatusFactory = "";
   let messageFactory = "";
-
+  let arrayMessages = [];
   arrayMessages = response.data;
-
+  main.innerHTML = "";
   for (let i = 0; i < arrayMessages.length; i++) {
     if (arrayMessages[i].type === "status") {
       main.innerHTML += `<article class="${arrayMessages[i].type}">
@@ -75,12 +75,13 @@ function renderMessages(response) {
         </p>
       </article>`;
     }
-    newMessage = document.querySelector("main article:last-child");
+    newMessage = document.querySelector("article:last-child");
     if (newMessage.innerHTML !== oldMessage.innerHTML) {
       newMessage.scrollIntoView();
       oldMessage = newMessage;
     }
   }
+  getMessages();
 }
 
 function unRenderMessages(error) {
